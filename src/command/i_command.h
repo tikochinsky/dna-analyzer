@@ -7,8 +7,8 @@
 
 class ICommand{
 public:
-    virtual void run(DnaContainer& dnaContainer, Args args)=0;
-    virtual void print(const DnaMetaData& dna)=0;
+    virtual void run(IWriter* writer, DnaContainer& dnaContainer, Args args)=0;
+    virtual void print(IWriter* writer, const DnaMetaData& dna)=0;
 };
 
 #endif //DNA_ANALYZER_PROJECT_ICOMMAND_H

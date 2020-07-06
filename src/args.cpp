@@ -1,5 +1,5 @@
 #include "args.h"
-#include <cstring>
+
 
 Args::Args(const std::string& input){
     std::string word = "";

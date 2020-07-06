@@ -79,11 +79,21 @@ DnaSequence::Nucleotide& DnaSequence::operator[](size_t index)const
 }
 
 
-//size_t DnaSequence::getSequenceLength()const
-//{
-//    return _length;
-//}
-//
+std::string DnaSequence::getSequence()const{
+    std::string dnaSequenceStr;
+    for(size_t i=0; i<_length; ++i) {
+        dnaSequenceStr += (*this)[i];
+    }
+
+    return dnaSequenceStr;
+}
+
+
+size_t DnaSequence::getSequenceLength()const
+{
+    return _length;
+}
+
 //
 //DnaSequence DnaSequence::slice(size_t start, size_t end)const
 //{
@@ -199,16 +209,7 @@ DnaSequence::Nucleotide& DnaSequence::operator[](size_t index)const
 //    }
 //}
 //
-//
-//std::string DnaSequence::getSequence(){
-//    std::string dnaSequenceStr;
-//    for(size_t i=0; i<_length; ++i) {
-//        dnaSequenceStr += (*this)[i];
-//    }
-//
-//    return dnaSequenceStr;
-//}
-//
+
 //
 //
 ////---------

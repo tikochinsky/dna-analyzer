@@ -3,5 +3,5 @@
 
 
 void ScreenWriter::write(const char* dataToWrite){
-    std::cout << "screen";
+    std::cout << dataToWrite;
 }

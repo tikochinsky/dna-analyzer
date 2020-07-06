@@ -5,8 +5,8 @@
 
 class NewCommand:public ICommand{
 public:
-    void run(DnaContainer& dnaContainer, Args args);
-    void print(const DnaMetaData& dna);
+    virtual void run(IWriter* writer, DnaContainer& dnaContainer, Args args);
+    virtual void print(IWriter* writer, const DnaMetaData& dna);
 };
 
 

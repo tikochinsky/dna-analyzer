@@ -36,7 +36,7 @@ private:
 //    void paired();
 //    void reverse();
 //
-//    std::string getSequence();
+
 
 public:
     DnaSequence(const char *c_string);
@@ -47,7 +47,8 @@ public:
     DnaSequence& operator=(const DnaSequence& dnaSequence);
 
     DnaSequence::Nucleotide& operator[](size_t index)const;
-//    size_t getSequenceLength()const;
+    size_t getSequenceLength()const;
+    std::string getSequence()const;
 //    DnaSequence slice(size_t start, size_t end)const;
 //    DnaSequence getPairedStrand()const;
 //    int findSubSeq(const DnaSequence& subSeq)const;

@@ -11,3 +11,7 @@ const char* DnaMetaData::getName()const {
 size_t DnaMetaData::getId()const {
     return _id;
 }
+
+std::string DnaMetaData::getDna()const{
+    return _dna.getSequence();
+}

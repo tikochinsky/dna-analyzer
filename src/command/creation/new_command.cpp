@@ -2,7 +2,7 @@
 #include <string>
 #include <sstream>
 
-void NewCommand::run(DnaContainer& dnaContainer, Args args){
+void NewCommand::run(IWriter* writer, DnaContainer& dnaContainer, Args args){
     static std::string seqName = "seq";
     DnaMetaData* dnaMetaDataToAdd;
 
@@ -25,11 +25,13 @@ void NewCommand::run(DnaContainer& dnaContainer, Args args){
     }
 
     dnaContainer.addDna(dnaMetaDataToAdd);
-    print(*dnaMetaDataToAdd);
+    print(writer, *dnaMetaDataToAdd);
 }
 
 
-void NewCommand::print(const DnaMetaData& dna){
-    std::cout << "[" << dna.getId() << "] " << dna.getName() << " ";//print seq
+void NewCommand::print(IWriter* writer, const DnaMetaData& dna){
+    std::stringstream s;
+    s << "[" << dna.getId() << "] " << dna.getName() << " " << dna.getDna();
+    writer->write(s.str().c_str());
     std::cout << std::endl;
 }

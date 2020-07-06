@@ -7,7 +7,7 @@
 
 
 //try... catch...
-DnaCommandManager::DnaCommandManager():_pReader(new ConsoleReader("> cmd >>>")), _pWriter(new ScreenWriter){}
+DnaCommandManager::DnaCommandManager():_pReader(new ConsoleReader("> cmd >>> ")), _pWriter(new ScreenWriter){}
 
 
 void DnaCommandManager::start(){
@@ -29,8 +29,7 @@ void DnaCommandManager::runCommand(){
     Args args(_pReader->read());
     ICommand* command = CommandFactory::command(args[0].c_str());
     args.remove(0);
-    command->run(_dnaContainer, args);
-    _pWriter->write(display());
+    command->run(_pWriter,_dnaContainer, args);
 }
 
 Args DnaCommandManager::promptAndInput(){
