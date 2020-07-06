@@ -3,17 +3,18 @@
 
 #include <iostream>
 #include <vector>
-
+#include <string>
 
 class Args{
 public:
-    void addArgument(char *argument);
-    char* operator[](size_t index);
+    Args(const std::string& input);
+//    void addArgument(char* argument);
+    const std::string& operator[](size_t index);
     void remove(size_t index);
     size_t size();
 
 private:
-    std::vector<char*> _arguments;
+    std::vector<std::string> _arguments;
 };
 
 #endif //DNA_ANALYZER_PROJECT_ARGS_H

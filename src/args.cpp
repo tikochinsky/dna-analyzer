@@ -1,11 +1,29 @@
 #include "args.h"
+#include <cstring>
 
-void Args::addArgument(char *argument){
-    _arguments.insert(_arguments.end(), argument);
+Args::Args(const std::string& input){
+    std::string word = "";
+    for (char c : input){
+        if (c == ' ')
+        {
+            _arguments.push_back(word.c_str());
+            word = "";
+        }
+        else
+        {
+            word = word + c;
+        }
+    }
+    _arguments.push_back(word.c_str());
 }
 
 
-char* Args::operator[](size_t index){
+//void Args::addArgument(char* argument){
+//    _arguments.insert(_arguments.end(), argument);
+//}
+
+
+const std::string& Args::operator[](size_t index){
     return _arguments[index];
 }
 

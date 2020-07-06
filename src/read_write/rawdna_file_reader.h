@@ -7,8 +7,7 @@
 
 class RawdnaFileReader:public IReader{
 public:
-    virtual ~RawdnaFileReader();
-    virtual const char* read(const char* fileName);
+    const char* read(const char* fileName);
 
 private:
     std::ifstream _myFile;

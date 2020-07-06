@@ -3,6 +3,7 @@
 #include "command/i_command.h"
 #include <iostream>
 #include <cstring>
+#include <sstream>
 
 
 //try... catch...
@@ -18,23 +19,19 @@ void DnaCommandManager::start(){
 
 void DnaCommandManager::runCommand(){
     Args args = promptAndInput();
-    ICommand* command = CommandFactory::command(args[0]);
+    ICommand* command = CommandFactory::command(args[0].c_str());
     args.remove(0);
     command->run(_dnaContainer, args);
 }
 
 
 Args DnaCommandManager::promptAndInput(){
-    char* input;
-    Args args;
+    std::string input;
 
     std::cout << "> cmd >>> ";
-    std::cin >> input;
-    strtok(input, " ");
 
-    while (input != NULL)
-    {
-        args.addArgument(strtok (NULL, " "));
-    }
+    std::getline(std::cin, input);
+    Args args(input);
+
     return args;
 }
