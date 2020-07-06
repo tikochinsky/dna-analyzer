@@ -9,7 +9,7 @@
 const char * DnaSequence::_dnaAlphabet = "GCTA";
 
 
-DnaSequence::Nucleotide* DnaSequence::getSeqToInit(const char* dnaSeq)const throw(DnaSequenceError)
+DnaSequence::Nucleotide* DnaSequence::getSeqToInit(const char* dnaSeq)const
 {
     size_t i;
     size_t lengthOfSeq= strlen(dnaSeq);
@@ -42,7 +42,7 @@ DnaSequence::DnaSequence(const char *c_string):_dnaSequence(getSeqToInit(c_strin
 DnaSequence::DnaSequence(const std::string& string):_dnaSequence(getSeqToInit(string.c_str())),_length(string.length()){}
 
 
-DnaSequence::DnaSequence(IReader& reader): _dnaSequence(getSeqToInit(reader.read())), _length(strlen(reader.read())){}
+DnaSequence::DnaSequence(IReader& reader, const char* name): _dnaSequence(getSeqToInit(reader.read(name))), _length(strlen(reader.read(name))){}
 
 
 DnaSequence::DnaSequence(const DnaSequence& dnaSequence):_dnaSequence(getSeqToAssign(dnaSequence)), _length(dnaSequence._length){}
@@ -57,7 +57,7 @@ DnaSequence::~DnaSequence()
 }
 
 
-DnaSequence& DnaSequence::operator=(const DnaSequence& dnaSequence) throw(DnaSequenceError)
+DnaSequence& DnaSequence::operator=(const DnaSequence& dnaSequence)
 {
     try{
         DnaSequence::Nucleotide* temp = getSeqToAssign(dnaSequence);
@@ -72,12 +72,12 @@ DnaSequence& DnaSequence::operator=(const DnaSequence& dnaSequence) throw(DnaSeq
 }
 
 
-//DnaSequence::Nucleotide& DnaSequence::operator[](size_t index)const  throw(DnaSequenceError)
-//{
-//    if(index < _length)
-//        return _dnaSequence[index];
-//    throw DnaSequenceError("Index out of range\n");
-//}
+DnaSequence::Nucleotide& DnaSequence::operator[](size_t index)const
+{
+    if(index < _length)
+        return _dnaSequence[index];
+    throw DnaSequenceError("Index out of range\n");
+}
 //
 //
 //size_t DnaSequence::getSequenceLength()const

@@ -7,7 +7,7 @@
 
 class ICommand{
 public:
-    virtual void run(const DnaContainer&, Args args)=0;
+    virtual void run(DnaContainer& dnaContainer, Args args)=0;
     virtual void print(const DnaMetaData& dna)=0;
 };
 

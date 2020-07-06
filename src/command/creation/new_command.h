@@ -5,7 +5,7 @@
 
 class NewCommand:public ICommand{
 public:
-    void run(const DnaContainer&, Args args);
+    void run(DnaContainer& dnaContainer, Args args);
     void print(const DnaMetaData& dna);
 };
 

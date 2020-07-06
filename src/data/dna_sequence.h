@@ -41,12 +41,12 @@ private:
 public:
     DnaSequence(const char *c_string);
     DnaSequence(const std::string& string);
-    DnaSequence(IReader& reader);
+    DnaSequence(IReader& reader, const char* name);
     DnaSequence(const DnaSequence& dnaSequence);
     ~DnaSequence();
     DnaSequence& operator=(const DnaSequence& dnaSequence);
 
-//    DnaSequence::Nucleotide& operator[](size_t index)const;
+    DnaSequence::Nucleotide& operator[](size_t index)const;
 //    size_t getSequenceLength()const;
 //    DnaSequence slice(size_t start, size_t end)const;
 //    DnaSequence getPairedStrand()const;

@@ -1,10 +1,6 @@
 #include "rawdna_file_reader.h"
 
-
-
-
 RawdnaFileReader::~RawdnaFileReader(){}
-
 
 const char* RawdnaFileReader::read(const char *fileName){
     std::string data;

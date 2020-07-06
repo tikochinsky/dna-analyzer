@@ -1,5 +1,6 @@
 #include "rawdna_file_writer.h"
 
+RawdnaFileWriter::~RawdnaFileWriter(){}
 
 void RawdnaFileWriter::write(const char *fileName, const char* dataToWrite){
 
