@@ -1,15 +1,15 @@
 #include "txt_file_writer.h"
 
 
-TxtFileWriter::TxtFileWriter(){}
+TxtFileWriter::TxtFileWriter(const char *fileName):_fileName(fileName){}
 
 
 TxtFileWriter::~TxtFileWriter(){}
 
 
-void TxtFileWriter::write(const char *fileName, const char* dataToWrite){
+void TxtFileWriter::write(const char* dataToWrite){
 
-    _myFile.open(fileName);
+    _myFile.open(_fileName);
 
     if (_myFile.fail()){
         throw std::invalid_argument("Opening file failed\n");

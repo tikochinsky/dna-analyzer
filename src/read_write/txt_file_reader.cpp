@@ -1,13 +1,16 @@
 #include "txt_file_reader.h"
 
 
+TxtFileReader::TxtFileReader(const char *fileName):_fileName(fileName){}
+
+
 TxtFileReader::~TxtFileReader(){}
 
 
-const char* TxtFileReader::read(const char *fileName){
+const char* TxtFileReader::read(){
     std::string data;
 
-    _myFile.open(fileName);
+    _myFile.open(_fileName);
 
     if (_myFile.fail()){
         throw std::invalid_argument("Opening file failed\n");

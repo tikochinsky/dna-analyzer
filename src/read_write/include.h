@@ -7,5 +7,7 @@
 #include "txt_file_writer.h"
 #include "rawdna_file_reader.h"
 #include "rawdna_file_writer.h"
+#include "console_reader.h"
+#include "screen_writer.h"
 
 #endif //DNA_ANALYZER_PROJECT_INCLUDE_H

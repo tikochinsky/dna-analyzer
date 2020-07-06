@@ -41,7 +41,7 @@ private:
 public:
     DnaSequence(const char *c_string);
     DnaSequence(const std::string& string);
-    DnaSequence(IReader& reader, const char *name);
+    DnaSequence(IReader& reader);
     DnaSequence(const DnaSequence& dnaSequence);
     ~DnaSequence();
     DnaSequence& operator=(const DnaSequence& dnaSequence);

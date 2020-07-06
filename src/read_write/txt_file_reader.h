@@ -7,11 +7,13 @@
 
 class TxtFileReader:public IReader{
 public:
+    TxtFileReader(const char *fileName);
     ~TxtFileReader();
-    const char* read(const char *fileName);
+    const char* read();
 
 private:
     std::ifstream _myFile;
+    const char *_fileName;
 };
 
 #endif //DNA_SEQUENCE_TXT_FILE_READER_H

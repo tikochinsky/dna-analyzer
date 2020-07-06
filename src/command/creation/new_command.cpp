@@ -7,16 +7,16 @@ void NewCommand::run(DnaContainer& dnaContainer, Args args){
     DnaMetaData* dnaMetaDataToAdd;
 
     if(args.size() == 2 && args[1][0] == '@'){
-        dnaMetaDataToAdd = new DnaMetaData(args[0].c_str(), args[1].c_str(), ID_COUNTER++);
+        dnaMetaDataToAdd = new DnaMetaData(args[0].c_str(), args[1].c_str(), DnaContainer::ID_COUNTER++);
     }
 
     else if(args.size() == 1){
         std::stringstream s;
         s << seqName;
-        s << NAME_COUNTER++;
+        s << DnaContainer::NAME_COUNTER++;
         char *tempName;
         s >> tempName;
-        dnaMetaDataToAdd = new DnaMetaData(args[0].c_str(), tempName, ID_COUNTER++);
+        dnaMetaDataToAdd = new DnaMetaData(args[0].c_str(), tempName, DnaContainer::ID_COUNTER++);
     }
 
     else{
@@ -25,7 +25,6 @@ void NewCommand::run(DnaContainer& dnaContainer, Args args){
     }
 
     dnaContainer.addDna(dnaMetaDataToAdd);
-    std::cout << std::endl;
     print(*dnaMetaDataToAdd);
 }
 

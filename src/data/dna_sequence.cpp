@@ -42,7 +42,7 @@ DnaSequence::DnaSequence(const char *c_string):_dnaSequence(getSeqToInit(c_strin
 DnaSequence::DnaSequence(const std::string& string):_dnaSequence(getSeqToInit(string.c_str())),_length(string.length()){}
 
 
-DnaSequence::DnaSequence(IReader& reader, const char *name): _dnaSequence(getSeqToInit(reader.read(name))), _length(strlen(reader.read(name))){}
+DnaSequence::DnaSequence(IReader& reader): _dnaSequence(getSeqToInit(reader.read())), _length(strlen(reader.read())){}
 
 
 DnaSequence::DnaSequence(const DnaSequence& dnaSequence):_dnaSequence(getSeqToAssign(dnaSequence)), _length(dnaSequence._length){}

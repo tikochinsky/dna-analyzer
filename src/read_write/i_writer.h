@@ -4,7 +4,7 @@
 class IWriter{
 public:
     virtual ~IWriter()=0;
-    virtual void write(const char *fileName, const char* dataToWrite)=0;
+    virtual void write(const char* dataToWrite)=0;
 
 };
 

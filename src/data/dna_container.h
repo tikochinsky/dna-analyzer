@@ -4,12 +4,13 @@
 #include "dna_meta_data.h"
 #include <map>
 
-static size_t ID_COUNTER=0;
-static size_t NAME_COUNTER=1;
+
 
 
 class DnaContainer{
 public:
+    static size_t ID_COUNTER;
+    static size_t NAME_COUNTER;
     void addDna(DnaMetaData* dna);
 private:
     std::map<size_t, DnaMetaData*> _idHash;

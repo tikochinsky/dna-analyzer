@@ -5,7 +5,7 @@
 class IReader{
 public:
     virtual ~IReader()=0;
-    virtual const char* read(const char* fileName)=0;
+    virtual const char* read()=0;
 
 };
 

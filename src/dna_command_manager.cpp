@@ -7,7 +7,7 @@
 
 
 //try... catch...
-DnaCommandManager::DnaCommandManager():_pReader(new RawdnaFileReader), _pWriter(new RawdnaFileWriter){}
+DnaCommandManager::DnaCommandManager():_pReader(new ConsoleReader("> cmd >>>")), _pWriter(new ScreenWriter){}
 
 
 void DnaCommandManager::start(){
@@ -17,13 +17,21 @@ void DnaCommandManager::start(){
 }
 
 
+//void DnaCommandManager::runCommand(){
+//    Args args = promptAndInput();
+//    ICommand* command = CommandFactory::command(args[0].c_str());
+//    args.remove(0);
+//    command->run(_dnaContainer, args);
+//}
+
+
 void DnaCommandManager::runCommand(){
-    Args args = promptAndInput();
+    Args args(_pReader->read());
     ICommand* command = CommandFactory::command(args[0].c_str());
     args.remove(0);
     command->run(_dnaContainer, args);
+    _pWriter->write(display());
 }
-
 
 Args DnaCommandManager::promptAndInput(){
     std::string input;

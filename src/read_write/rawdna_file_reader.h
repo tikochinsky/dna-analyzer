@@ -5,12 +5,17 @@
 #include "i_reader.h"
 
 
+
 class RawdnaFileReader:public IReader{
 public:
-    const char* read(const char* fileName);
+    RawdnaFileReader(const char *fileName);
+    ~RawdnaFileReader();
+    const char* read();
 
 private:
     std::ifstream _myFile;
+    const char *_fileName;
 };
+
 
 #endif //DNA_ANALYZER_PROJECT_RAWDNA_FILE_READER_H

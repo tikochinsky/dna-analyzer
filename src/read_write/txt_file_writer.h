@@ -5,12 +5,13 @@
 
 class TxtFileWriter:public IWriter{
 public:
-    TxtFileWriter();
+    TxtFileWriter(const char *fileName);
     ~TxtFileWriter();
-    void write(const char *fileName, const char* dataToWrite);
+    void write(const char* dataToWrite);
 
 private:
     std::ofstream _myFile;
+    const char*_fileName;
 };
 
 #endif //DNA_SEQUENCE_TXT_FILE_WRITER_H
