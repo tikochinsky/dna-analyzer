@@ -8,6 +8,8 @@
 class DnaCommandManager{
 public:
     DnaCommandManager();
+    DnaCommandManager(IReader* pReader, IWriter* pWriter);
+    ~DnaCommandManager();
     void start();
 
     //how to send parameter?
@@ -18,10 +20,9 @@ private:
     DnaContainer _dnaContainer;
     IReader* _pReader;
     IWriter* _pWriter;
+    bool _hasDefaultReaderWriter;
 
     void runCommand();
-    Args promptAndInput();
-
 };
 
 

@@ -23,16 +23,16 @@ Args::Args(const std::string& input){
 //}
 
 
-const std::string& Args::operator[](size_t index){
+const std::string& Args::operator[](size_t index)const{
     return _arguments[index];
 }
 
+//
+//void Args::remove(size_t index){
+//    _arguments.erase(_arguments.begin()+index);
+//}
 
-void Args::remove(size_t index){
-    _arguments.erase(_arguments.begin()+index);
-}
 
-
-size_t Args::size(){
+size_t Args::size()const{
     return _arguments.size();
 }

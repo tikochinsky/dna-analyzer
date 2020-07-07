@@ -1,7 +1,6 @@
 #ifndef DNA_SEQUENCE_TXT_FILE_READER_H
 #define DNA_SEQUENCE_TXT_FILE_READER_H
 
-#include <fstream>
 #include "i_reader.h"
 
 
@@ -12,7 +11,6 @@ public:
     const char* read();
 
 private:
-    std::ifstream _myFile;
     const char *_fileName;
 };
 

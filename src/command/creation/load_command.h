@@ -1,9 +1,9 @@
-#ifndef DNA_ANALYZER_PROJECT_NEW_H
-#define DNA_ANALYZER_PROJECT_NEW_H
+#ifndef DNA_ANALYZER_PROJECT_LOAD_COMMAND_H
+#define DNA_ANALYZER_PROJECT_LOAD_COMMAND_H
 
 #include "../i_command.h"
 
-class NewCommand:public ICommand{
+class LoadCommand:public ICommand{
 public:
     virtual void run(IWriter* writer, DnaContainer& dnaContainer, const Args& args);
 
@@ -12,4 +12,4 @@ protected:
 };
 
 
-#endif //DNA_ANALYZER_PROJECT_NEW_H
+#endif //DNA_ANALYZER_PROJECT_LOAD_COMMAND_H

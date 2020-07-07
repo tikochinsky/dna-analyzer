@@ -7,14 +7,21 @@
 
 
 
-class DnaContainer{
+class DnaContainer{//typedef
+    typedef std::map<size_t, DnaMetaData*> sd_map;
+    typedef std::map<const char *, size_t> cs_map;
+
 public:
     static size_t ID_COUNTER;
     static size_t NAME_COUNTER;
     void addDna(DnaMetaData* dna);
+    const DnaMetaData* find(size_t id);
+    const DnaMetaData* find(const char *name);
+
+
 private:
-    std::map<size_t, DnaMetaData*> _idHash;
-    std::map<const char *, size_t> _nameHash;
+    sd_map _idHash;
+    cs_map _nameHash;
 
 };
 

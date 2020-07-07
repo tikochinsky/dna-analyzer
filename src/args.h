@@ -9,9 +9,9 @@ class Args{
 public:
     Args(const std::string& input);
 //    void addArgument(char* argument);
-    const std::string& operator[](size_t index);
-    void remove(size_t index);
-    size_t size();
+    const std::string& operator[](size_t index)const;
+//    void remove(size_t index);
+    size_t size()const;
 
 private:
     std::vector<std::string> _arguments;
