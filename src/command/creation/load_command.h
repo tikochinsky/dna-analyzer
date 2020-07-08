@@ -5,7 +5,7 @@
 
 class LoadCommand:public ICommand{
 public:
-    virtual void run(IWriter* writer, DnaContainer& dnaContainer, const Args& args);
+    virtual void run(IWriter* writer, DnaContainer* dnaContainer, const Args& args);
 
 protected:
     virtual void print(IWriter* writer, const DnaMetaData& dna);

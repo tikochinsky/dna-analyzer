@@ -2,7 +2,7 @@
 #include <string>
 #include <sstream>
 
-void NewCommand::run(IWriter* writer, DnaContainer& dnaContainer, const Args& args){
+void NewCommand::run(IWriter* writer, DnaContainer* dnaContainer, const Args& args){
     static const char* seqName = "seq";
     std::stringstream s;
     DnaMetaData* dnaMetaDataToAdd;
@@ -10,10 +10,17 @@ void NewCommand::run(IWriter* writer, DnaContainer& dnaContainer, const Args& ar
     //choose name or return error
     if(args.size() == 3 && args[2][0] == '@'){
         s << args[2].c_str() + 1;
+        if(dnaContainer->find(s.str().c_str())){
+            writer->write("Name already exists. Execute with another name\n");
+            return;
+        }
     }
 
     else if(args.size() == 2){
         s << seqName << DnaContainer::NAME_COUNTER++;
+        while(dnaContainer->find(s.str().c_str())){
+            s << seqName << DnaContainer::NAME_COUNTER++;
+        }
     }
 
     else{
@@ -27,11 +34,12 @@ void NewCommand::run(IWriter* writer, DnaContainer& dnaContainer, const Args& ar
         dnaMetaDataToAdd = new DnaMetaData(args[1].c_str(), s.str().c_str(), DnaContainer::ID_COUNTER++);
     }
     catch(DnaSequenceError& e){
+        DnaContainer::ID_COUNTER--;
         writer->write(e.what());
         return;
     }
 
-    dnaContainer.addDna(dnaMetaDataToAdd);
+    dnaContainer->addDna(dnaMetaDataToAdd);
     print(writer, *dnaMetaDataToAdd);
 }
 

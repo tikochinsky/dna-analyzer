@@ -3,28 +3,34 @@
 #include <sstream>
 
 
-void LoadCommand::run(IWriter* writer, DnaContainer& dnaContainer, const Args& args){
+void LoadCommand::run(IWriter* writer, DnaContainer* dnaContainer, const Args& args){
     DnaMetaData* dnaMetaDataToAdd;
     std::stringstream s;
 
     //choose name
     if(args.size() == 3 && args[2][0] == '@'){
         s << args[2].c_str() + 1;
+        if(dnaContainer->find(s.str().c_str())){
+            writer->write("Name already exists. Execute with another name\n");
+            return;
+        }
     }
 
     else if(args.size() == 2){
         size_t name_counter = 1;
-        std::string file_name = args[1].substr(0, args[1].size()-6);
+        std::string file_name = args[1].substr(0, args[1].size()-7);
 
         s << file_name << name_counter;
         //is in the container
-        while(dnaContainer.find(s.str().c_str())){
+        while(dnaContainer->find(s.str().c_str())){
             s.clear();
-            s << file_name << ++name_counter;
+            ++name_counter;
+            s << file_name << name_counter;
         }
     }
 
     else{
+        DnaContainer::ID_COUNTER--;
         writer->write("\nInvalid command");
         return;
     }
@@ -42,7 +48,7 @@ void LoadCommand::run(IWriter* writer, DnaContainer& dnaContainer, const Args& a
         return;
     }
 
-    dnaContainer.addDna(dnaMetaDataToAdd);
+    dnaContainer->addDna(dnaMetaDataToAdd);
     print(writer, *dnaMetaDataToAdd);
 }
 
@@ -62,3 +68,4 @@ void LoadCommand::print(IWriter* writer, const DnaMetaData& dna){
     writer->write(s.str().c_str());
     std::cout << std::endl;
 }
+
