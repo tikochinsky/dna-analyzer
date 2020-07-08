@@ -19,7 +19,6 @@ DnaSequence::Nucleotide* DnaSequence::getSeqToInit(const char* dnaSeq)const
     for (i = 0; i < lengthOfSeq; ++i) {
         allocated_dna_seq[i] = Nucleotide(dnaSeq[i]);
     }
-
     return allocated_dna_seq;
 }
 

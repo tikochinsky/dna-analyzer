@@ -3,22 +3,31 @@
 #include <sstream>
 
 void NewCommand::run(IWriter* writer, DnaContainer& dnaContainer, const Args& args){
-    static std::string seqName = "seq";
+    static const char* seqName = "seq";
+    std::stringstream s;
     DnaMetaData* dnaMetaDataToAdd;
 
+    //choose name or return error
     if(args.size() == 3 && args[2][0] == '@'){
-        dnaMetaDataToAdd = new DnaMetaData(args[1].c_str(), args[2].c_str()+1, DnaContainer::ID_COUNTER++);
+        s << args[2].c_str() + 1;
     }
 
     else if(args.size() == 2){
-        std::stringstream s;
-        s << seqName;
-        s << DnaContainer::NAME_COUNTER++;
-        dnaMetaDataToAdd = new DnaMetaData(args[1].c_str(), s.str().c_str(), DnaContainer::ID_COUNTER++);
+        s << seqName << DnaContainer::NAME_COUNTER++;
     }
 
     else{
-        std::cout << "\nInvalid command";
+        writer->write("\nInvalid command");
+        return;
+    }
+
+
+
+    try {
+        dnaMetaDataToAdd = new DnaMetaData(args[1].c_str(), s.str().c_str(), DnaContainer::ID_COUNTER++);
+    }
+    catch(DnaSequenceError& e){
+        writer->write(e.what());
         return;
     }
 

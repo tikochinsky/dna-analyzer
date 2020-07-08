@@ -9,9 +9,9 @@ RawdnaFileReader::~RawdnaFileReader(){}
 
 
 const char* RawdnaFileReader::read(){
-    std::string data;
     std::string line;
     std::ifstream _myFile;
+    _input.clear();
 
     _myFile.open(_fileName);
 
@@ -22,10 +22,10 @@ const char* RawdnaFileReader::read(){
 
     while(std::getline(_myFile, line))
     {
-        data += line;
+        _input += line;
     }
 
     _myFile.close();
 
-    return data.c_str();
+    return _input.c_str();
 }
