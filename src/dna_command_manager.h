@@ -1,9 +1,7 @@
 #ifndef DNA_ANALYZER_PROJECT_DNA_COMMAND_MANAGER_H
 #define DNA_ANALYZER_PROJECT_DNA_COMMAND_MANAGER_H
 
-#include "read_write/include.h"
-#include "data/dna_container.h"
-#include "args.h"
+#include "dna_terminal.h"
 
 class DnaCommandManager{
 public:
@@ -17,12 +15,11 @@ public:
     void setWriter();
 
 private:
+    DnaTerminal _dnaTerminal;
     DnaContainer _dnaContainer;
     IReader* _pReader;
     IWriter* _pWriter;
     bool _hasDefaultReaderWriter;
-
-    void runCommand();
 };
 
 
