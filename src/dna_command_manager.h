@@ -15,8 +15,8 @@ public:
     void setWriter();
 
 private:
-    DnaTerminal _dnaTerminal;
     DnaContainer _dnaContainer;
+    DnaTerminal* _dnaTerminal;
     IReader* _pReader;
     IWriter* _pWriter;
     bool _hasDefaultReaderWriter;

@@ -5,20 +5,23 @@
 #include "args.h"
 
 
-void DnaTerminal::run(IReader* pReader, IWriter* pWriter, DnaContainer& dnaContainer){
+DnaTerminal::DnaTerminal(IReader* pReader, IWriter* pWriter, DnaContainer* pDnaContainer):_pReader(pReader), _pWriter(pWriter), _pDnaContainer(pDnaContainer){}
+
+
+void DnaTerminal::run(){
     while(1){
-        runCommand(pReader, pWriter, dnaContainer);
+        runCommand();
     }
 }
 
 
-void DnaTerminal::runCommand(IReader* pReader, IWriter* pWriter, DnaContainer& dnaContainer){
-    Args args(pReader->read());
+void DnaTerminal::runCommand(){
+    Args args(_pReader->read());
     ICommand* command = CommandFactory::command(args[0].c_str());
     if(command){
-        command->run(pWriter, dnaContainer, args);
+        command->run(_pWriter, _pDnaContainer, args);
     }
     else{
-        pWriter->write("Invalid command");
+        _pWriter->write("Invalid command");
     }
 }

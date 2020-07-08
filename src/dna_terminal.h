@@ -5,12 +5,15 @@
 
 class DnaTerminal{
 public:
-    void run(IReader* pReader, IWriter* pWriter, DnaContainer& dnaContainer);
+    DnaTerminal(IReader* pReader, IWriter* pWriter, DnaContainer* dnaContainer);
+    void run();
 
 private:
+    IReader* _pReader;
+    IWriter* _pWriter;
+    DnaContainer* _pDnaContainer;
 
-
-    void runCommand(IReader* pReader, IWriter* pWriter, DnaContainer& dnaContainer);
+    void runCommand();
 };
 
 
