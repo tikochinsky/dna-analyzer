@@ -28,3 +28,11 @@ const DnaMetaData* DnaContainer::find(const std::string& name){
     }
     return _idHash.find(pos->second)->second;
 }
+
+
+std::string DnaContainer::getNameById(size_t id){
+    for (ss_map::iterator it = _nameHash.begin(); it != _nameHash.end(); ++it)
+        if (it->second == id)
+            return it->first;
+    return "";
+}

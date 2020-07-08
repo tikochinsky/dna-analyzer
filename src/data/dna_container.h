@@ -17,6 +17,7 @@ public:
     void addDna(DnaMetaData* dna);
     const DnaMetaData* find(size_t id);
     const DnaMetaData* find(const std::string&);
+    std::string getNameById(size_t id);
 
 
 private:

@@ -7,6 +7,7 @@
 
 class ICommand{
 public:
+    virtual ~ICommand(){}
     virtual void run(IWriter* writer, DnaContainer* dnaContainer, const Args& args)=0;
 
 protected:
