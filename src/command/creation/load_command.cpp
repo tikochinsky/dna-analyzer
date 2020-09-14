@@ -3,8 +3,8 @@
 #include <sstream>
 
 
-void LoadCommand::run(IWriter* writer, DnaContainer* dnaContainer, const Args& args){
-    DnaMetaData* dnaMetaDataToAdd;
+
+std::string LoadCommand::extractName(IWriter* writer,  DnaContainer* dnaContainer, const Args& args){
     std::stringstream s;
 
     //choose name
@@ -12,7 +12,7 @@ void LoadCommand::run(IWriter* writer, DnaContainer* dnaContainer, const Args& a
         s << args[2].c_str() + 1;
         if(dnaContainer->find(s.str().c_str())){
             writer->write("Name already exists. Execute with another name\n");
-            return;
+            return "";
         }
     }
 
@@ -32,15 +32,26 @@ void LoadCommand::run(IWriter* writer, DnaContainer* dnaContainer, const Args& a
     else{
         DnaContainer::ID_COUNTER--;
         writer->write("\nInvalid command");
+        return "";
+    }
+
+    return s.str();
+}
+
+
+void LoadCommand::run(IWriter* writer, DnaContainer* dnaContainer, const Args& args){
+    DnaMetaData* dnaMetaDataToAdd;
+
+    std::string name = extractName(writer, dnaContainer, args);
+    RawdnaFileReader reader(args[1].c_str());
+
+    if(name.empty()){
         return;
     }
 
-
-    RawdnaFileReader reader(args[1].c_str());
-
     try{
 
-        dnaMetaDataToAdd = new DnaMetaData(reader.read(), s.str().c_str(), DnaContainer::ID_COUNTER++);
+        dnaMetaDataToAdd = new DnaMetaData(reader.read(), name.c_str(), DnaContainer::ID_COUNTER++);
     }
 
     catch(DnaSequenceError& e){
@@ -51,6 +62,7 @@ void LoadCommand::run(IWriter* writer, DnaContainer* dnaContainer, const Args& a
     dnaContainer->addDna(dnaMetaDataToAdd);
     print(writer, *dnaMetaDataToAdd);
 }
+
 
 void LoadCommand::print(IWriter* writer, const DnaMetaData& dna){
     std::stringstream s;

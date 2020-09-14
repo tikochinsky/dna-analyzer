@@ -9,6 +9,9 @@ public:
 
 protected:
     virtual void print(IWriter* writer, const DnaMetaData& dna);
+
+private:
+    std::string extractName(IWriter* writer,  DnaContainer* dnaContainer, const Args& args);
 };
 
 
