@@ -3,19 +3,35 @@
 #include "management/save_command.h"
 #include <cstring>
 
+CommandFactory* CommandFactory::_obj = NULL;
 
-ICommand* CommandFactory::command(const char *input){
-    if(!strcmp(input, "new")){
-        return new NewCommand;
+
+CommandFactory* CommandFactory::getCommandFactory(){
+    if(_obj == NULL){
+        _obj = new CommandFactory();
     }
 
-    if(!strcmp(input, "load")){
-        return new LoadCommand;
-    }
+    return _obj;
+}
 
-    if(!strcmp(input, "save")){
-        return new SaveCommand;
-    }
 
-    return NULL;
+CommandFactory::~CommandFactory(){
+    std::map<std::string, ICommand*>::iterator it;
+
+    for (it = _commandMap.begin(); it != _commandMap.end(); ++it)
+    {
+        delete it->second;
+    }
+}
+
+
+CommandFactory::CommandFactory(){
+    _commandMap.insert(std::pair<std::string, ICommand*>("new", new NewCommand));
+    _commandMap.insert(std::pair<std::string, ICommand*>("load", new LoadCommand));
+    _commandMap.insert(std::pair<std::string, ICommand*>("save", new SaveCommand));
+}
+
+
+ICommand* CommandFactory::getCommand(const std::string& input){
+    return _commandMap.find(input)->second;
 }
