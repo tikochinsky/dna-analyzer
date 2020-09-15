@@ -13,6 +13,7 @@ protected:
 private:
     void saveSeqById(IWriter* writer, DnaContainer* dnaContainer, const Args& args);
     void saveSeqByName(IWriter* writer, DnaContainer* dnaContainer, const Args& args);
+    static std::string _rootDir;
 };
 
 

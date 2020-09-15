@@ -1,5 +1,5 @@
 #include "load_command.h"
-#include "../../read_write/rawdna_file_reader.h"
+#include "../../../view/read_write/rawdna_file_reader.h"
 #include <sstream>
 
 

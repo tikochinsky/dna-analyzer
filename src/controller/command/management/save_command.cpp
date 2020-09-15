@@ -1,7 +1,11 @@
 #include "save_command.h"
 #include <sstream>
-#include "../../read_write/rawdna_file_writer.h"
+#include "../../../view/read_write/rawdna_file_writer.h"
 #include <string>
+
+
+std::string SaveCommand::_rootDir = "data/dna_files/";
+
 
 void SaveCommand::run(IWriter* writer, DnaContainer* dnaContainer, const Args& args){
     if(!(args.size()== 2 || args.size()== 3)){
@@ -36,10 +40,10 @@ void SaveCommand::saveSeqById(IWriter* writer, DnaContainer* dnaContainer, const
     ss >> dnaId;
 
     if(args.size() == 2) {
-        fileName = dnaContainer->getNameById(dnaId) + ".rawdna";
+        fileName = _rootDir + dnaContainer->getNameById(dnaId) + ".rawdna";
     }
     else{
-        fileName = args[2] + ".rawdna";
+        fileName = _rootDir + args[2] + ".rawdna";
     }
 
 

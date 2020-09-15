@@ -3,9 +3,9 @@
 
 #include <string>
 #include <list>
-#include "../read_write/i_reader.h"
-#include "../read_write/i_writer.h"
-#include "../error/dna_sequence_error.h"
+#include "../view/read_write/i_reader.h"
+#include "../view/read_write/i_writer.h"
+#include "../controller/error/dna_sequence_error.h"
 
 class DnaSequence{
 private:

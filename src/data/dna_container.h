@@ -5,8 +5,6 @@
 #include <map>
 
 
-
-
 class DnaContainer{//typedef
     typedef std::map<size_t, DnaMetaData*> sd_map;
     typedef std::map<std::string, size_t> ss_map;

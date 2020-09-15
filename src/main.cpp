@@ -1,4 +1,4 @@
-#include "run_dna.h"
+#include "controller/run_dna.h"
 
 int main() {
     RunDna run_app;

@@ -1,8 +1,8 @@
 #ifndef DNA_ANALYZER_PROJECT_ICOMMAND_H
 #define DNA_ANALYZER_PROJECT_ICOMMAND_H
 
-#include "../data/dna_container.h"
-#include "../args.h"
+#include "../../data/dna_container.h"
+#include "../../view/UI/CLI/args.h"
 
 
 class ICommand{

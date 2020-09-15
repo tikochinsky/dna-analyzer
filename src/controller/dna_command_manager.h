@@ -1,12 +1,12 @@
 #ifndef DNA_ANALYZER_PROJECT_DNA_COMMAND_MANAGER_H
 #define DNA_ANALYZER_PROJECT_DNA_COMMAND_MANAGER_H
 
-#include "dna_terminal.h"
+#include "../view/UI/CLI/dna_terminal.h"
 
 class DnaCommandManager{
 public:
     DnaCommandManager();
-    DnaCommandManager(IReader* pReader, IWriter* pWriter);
+//    DnaCommandManager(IReader* pReader, IWriter* pWriter);
     ~DnaCommandManager();
     void start();
 
@@ -16,10 +16,7 @@ public:
 
 private:
     DnaContainer _dnaContainer;
-    DnaTerminal* _dnaTerminal;
-    IReader* _pReader;
-    IWriter* _pWriter;
-    bool _hasDefaultReaderWriter;
+    DnaTerminal* _dnaUI;
 };
 
 
