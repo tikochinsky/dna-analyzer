@@ -3,6 +3,7 @@
 
 #include "../i_command.h"
 
+
 class NewCommand:public ICommand{
 public:
     virtual void run(IWriter* writer, DnaContainer* dnaContainer, const Args& args);

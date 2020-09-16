@@ -7,13 +7,13 @@
 class DnaMetaData{
 public:
     DnaMetaData(const char *dna, const char *name, size_t id);
-    const char* getName()const;
+    std::string getName()const;
     size_t getId()const;
     std::string getDna()const;
 
 private:
     DnaSequence _dna;
-    const char* _name;
+    std::string _name;
     size_t _id;
 };
 

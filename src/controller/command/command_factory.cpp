@@ -29,6 +29,7 @@ CommandFactory::CommandFactory(){
     _commandMap.insert(std::pair<std::string, ICommand*>("new", new NewCommand));
     _commandMap.insert(std::pair<std::string, ICommand*>("load", new LoadCommand));
     _commandMap.insert(std::pair<std::string, ICommand*>("save", new SaveCommand));
+    _commandMap.insert(std::pair<std::string, ICommand*>("dup", new DupCommand));
 }
 
 

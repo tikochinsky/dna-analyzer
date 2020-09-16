@@ -1,7 +1,8 @@
 #ifndef DNA_ANALYZER_PROJECT_DNA_COMMAND_MANAGER_H
 #define DNA_ANALYZER_PROJECT_DNA_COMMAND_MANAGER_H
 
-#include "../view/UI/CLI/dna_terminal.h"
+#include "../view/UI/UI.h"
+#include "../data/dna_container.h"
 
 class DnaCommandManager{
 public:
@@ -16,7 +17,7 @@ public:
 
 private:
     DnaContainer _dnaContainer;
-    DnaTerminal* _dnaUI;
+    UI* _dnaUI;
 };
 
 

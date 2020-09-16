@@ -18,7 +18,7 @@ std::string NewCommand::extractName(IWriter* writer, DnaContainer* dnaContainer,
 
     else if(args.size() == 2){
         s << seqName << DnaContainer::NAME_COUNTER++;
-        while(dnaContainer->find(s.str().c_str())){
+        while(dnaContainer->find(s.str())){
             s << seqName << DnaContainer::NAME_COUNTER++;
         }
     }
@@ -47,6 +47,9 @@ void NewCommand::run(IWriter* writer, DnaContainer* dnaContainer, const Args& ar
     }
     catch(DnaSequenceError& e){
         DnaContainer::ID_COUNTER--;
+        if(args.size() == 2){
+            DnaContainer::NAME_COUNTER--;
+        }
         writer->write(e.what());
         return;
     }
