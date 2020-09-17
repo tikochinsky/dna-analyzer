@@ -5,13 +5,15 @@
 #include <map>
 
 
-class DnaContainer{//typedef
+class DnaContainer{
     typedef std::map<size_t, DnaMetaData*> sd_map;
     typedef std::map<std::string, size_t> ss_map;
 
 public:
     static size_t ID_COUNTER;
     static size_t NAME_COUNTER;
+
+    ~DnaContainer();
     void addDna(DnaMetaData* dna);
     const DnaMetaData* find(size_t id);
     const DnaMetaData* find(const std::string&);
