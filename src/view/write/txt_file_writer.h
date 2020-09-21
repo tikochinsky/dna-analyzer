@@ -1,7 +1,7 @@
 #ifndef DNA_SEQUENCE_TXT_FILE_WRITER_H
 #define DNA_SEQUENCE_TXT_FILE_WRITER_H
 #include <fstream>
-#include "i_writer.h"
+#include "../write/i_writer.h"
 
 class TxtFileWriter:public IWriter{
 public:

@@ -1,7 +1,7 @@
 #ifndef DNA_ANALYZER_PROJECT_RAWDNA_FILE_WRITER_H
 #define DNA_ANALYZER_PROJECT_RAWDNA_FILE_WRITER_H
 
-#include "i_writer.h"
+#include "../write/i_writer.h"
 #include <fstream>
 
 
