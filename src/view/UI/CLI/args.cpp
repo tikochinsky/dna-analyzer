@@ -2,35 +2,25 @@
 
 
 Args::Args(const std::string& input){
-    std::string word = "";
-    for (char c : input){
-        if (c == ' ')
+    std::string word;
+    for (size_t i = 0; i < input.size(); ++i){
+        if (input[i] == ' ')
         {
-            _arguments.push_back(word.c_str());
+            _arguments.push_back(word);
             word = "";
         }
         else
         {
-            word = word + c;
+            word += input[i];
         }
     }
-    _arguments.push_back(word.c_str());
+    _arguments.push_back(word);
 }
-
-
-//void Args::addArgument(char* argument){
-//    _arguments.insert(_arguments.end(), argument);
-//}
 
 
 const std::string& Args::operator[](size_t index)const{
     return _arguments[index];
 }
-
-//
-//void Args::remove(size_t index){
-//    _arguments.erase(_arguments.begin()+index);
-//}
 
 
 size_t Args::size()const{
