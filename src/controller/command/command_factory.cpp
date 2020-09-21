@@ -6,7 +6,7 @@
 CommandFactory* CommandFactory::_obj = NULL;
 
 
-CommandFactory* CommandFactory::getCommandFactory(){
+CommandFactory* CommandFactory::getInstance(){
     if(_obj == NULL){
         _obj = new CommandFactory();
     }
@@ -14,6 +14,11 @@ CommandFactory* CommandFactory::getCommandFactory(){
     return _obj;
 }
 
+
+void CommandFactory::resetInstance(){
+    delete _obj;
+    _obj = NULL;
+}
 
 CommandFactory::~CommandFactory(){
     std::map<std::string, ICommand*>::iterator it;

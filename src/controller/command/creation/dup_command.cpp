@@ -7,6 +7,21 @@
 #include <sstream>
 
 
+static bool isName(const Args& args, size_t index){
+    return args[index][0] == '@';
+}
+
+
+static bool isId(const Args& args, size_t index){
+    return args[index][0] == '#';
+}
+
+
+bool DupCommand::hasValidNumOfArgs(const Args& args){
+    return args.size() == 2 || args.size() == 3;
+}
+
+
 std::string DupCommand::extractName(IWriter* writer,  DnaContainer* dnaContainer, const DnaMetaData* dnaToDup, const Args& args){
     std::stringstream s;
     size_t nameCounter = 1;
@@ -36,13 +51,13 @@ std::string DupCommand::extractName(IWriter* writer,  DnaContainer* dnaContainer
 const DnaMetaData* DupCommand::getDnaToDup(IWriter* writer, DnaContainer* dnaContainer, const Args& args){
     const DnaMetaData *dnaToDup;
 
-    if(!(args.size() == 2 || args.size() == 3)){
+    if(!hasValidNumOfArgs(args)){
         writer->write("\nThe number of arguments is not valid");
         return NULL;
     }
 
 
-    if(args[1][0] == '#'){
+    if(isId(args, 1)){
         size_t dnaId;
         std::istringstream ss(args[1].substr(1));
         ss >> dnaId;
@@ -50,18 +65,18 @@ const DnaMetaData* DupCommand::getDnaToDup(IWriter* writer, DnaContainer* dnaCon
         dnaToDup = dnaContainer->find(dnaId);
     }
 
-    else if(args[1][0] == '@'){
+    else if(isName(args, 1)){
         dnaToDup = dnaContainer->find(args[1].substr(1));
     }
 
     else{
-        writer->write("\nInvalid sequence name");
+        writer->write("Invalid sequence name\n");
         return NULL;
     }
 
 
     if(!dnaToDup){
-        writer->write("\nSequence not found");
+        writer->write("Sequence not found\n");
         return NULL;
     }
 

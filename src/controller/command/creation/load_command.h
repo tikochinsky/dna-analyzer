@@ -12,6 +12,9 @@ protected:
 
 private:
     std::string extractName(IWriter* writer,  DnaContainer* dnaContainer, const Args& args);
+    static bool hasValidNumOfArgs(const Args& args);
+
+    static std::string _rootDir;
 };
 
 

@@ -6,7 +6,9 @@
 
 class CommandFactory{
 public:
-    static CommandFactory* getCommandFactory();
+    static CommandFactory* getInstance();
+    static void resetInstance();
+
     ICommand* getCommand(const std::string& input);
 
     ~CommandFactory();

@@ -3,8 +3,8 @@
 
 #include <string>
 #include <list>
-#include "../view/read_write/i_reader.h"
-#include "../view/read_write/i_writer.h"
+#include "../view/read/i_reader.h"
+#include "../view/write/i_writer.h"
 #include "../controller/error/dna_sequence_error.h"
 
 class DnaSequence{

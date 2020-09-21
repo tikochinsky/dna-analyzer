@@ -1,16 +1,38 @@
 #include "load_command.h"
-#include "../../../view/read_write/rawdna_file_reader.h"
+#include "../../../view/read/rawdna_file_reader.h"
 #include <sstream>
 
+
+std::string LoadCommand::_rootDir = "data/dna_files/";
+
+
+static bool isName(const Args& args, size_t index){
+    return args[index][0] == '@';
+}
+
+
+static bool isId(const Args& args, size_t index){
+    return args[index][0] == '#';
+}
+
+
+bool LoadCommand::hasValidNumOfArgs(const Args& args){
+    return args.size() == 2 || args.size() == 3;
+}
 
 
 std::string LoadCommand::extractName(IWriter* writer,  DnaContainer* dnaContainer, const Args& args){
     std::stringstream s;
 
-    //choose name
-    if(args.size() == 3 && args[2][0] == '@'){
+    if(!hasValidNumOfArgs(args)){
+        writer->write("The number of arguments is not valid\n");
+        return NULL;
+    }
+
+
+    if(args.size() == 3 && isName(args, 2)){
         s << args[2].c_str() + 1;
-        if(dnaContainer->find(s.str().c_str())){
+        if(dnaContainer->find(s.str())){
             writer->write("Name already exists. Execute with another name\n");
             return "";
         }
@@ -22,7 +44,7 @@ std::string LoadCommand::extractName(IWriter* writer,  DnaContainer* dnaContaine
 
         s << file_name << name_counter;
         //is in the container
-        while(dnaContainer->find(s.str().c_str())){
+        while(dnaContainer->find(s.str())){
             s.clear();
             ++name_counter;
             s << file_name << name_counter;
@@ -31,7 +53,7 @@ std::string LoadCommand::extractName(IWriter* writer,  DnaContainer* dnaContaine
 
     else{
         DnaContainer::ID_COUNTER--;
-        writer->write("\nInvalid command");
+        writer->write("Invalid command\n");
         return "";
     }
 
@@ -43,18 +65,29 @@ void LoadCommand::run(IWriter* writer, DnaContainer* dnaContainer, const Args& a
     DnaMetaData* dnaMetaDataToAdd;
 
     std::string name = extractName(writer, dnaContainer, args);
-    RawdnaFileReader reader(args[1].c_str());
+    std::string fileName = _rootDir + args[1];
+    RawdnaFileReader reader(fileName.c_str());
+
 
     if(name.empty()){
         return;
     }
 
     try{
-
         dnaMetaDataToAdd = new DnaMetaData(reader.read(), name.c_str(), DnaContainer::ID_COUNTER++);
     }
 
     catch(DnaSequenceError& e){
+        writer->write(e.what());
+        return;
+    }
+
+    catch(std::invalid_argument& e){
+        writer->write(e.what());
+        return;
+    }
+
+    catch(std::bad_alloc& e){
         writer->write(e.what());
         return;
     }

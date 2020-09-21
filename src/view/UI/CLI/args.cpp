@@ -6,7 +6,7 @@ Args::Args(const std::string& input){
     for (size_t i = 0; i < input.size(); ++i){
         if (input[i] == ' ')
         {
-            _arguments.push_back(word);
+            addArgument(word);
             word = "";
         }
         else
@@ -14,7 +14,15 @@ Args::Args(const std::string& input){
             word += input[i];
         }
     }
-    _arguments.push_back(word);
+
+    addArgument(word);
+}
+
+
+void Args::addArgument(const std::string& word){
+    if(!word.empty()) {
+        _arguments.push_back(word);
+    }
 }
 
 
@@ -25,4 +33,9 @@ const std::string& Args::operator[](size_t index)const{
 
 size_t Args::size()const{
     return _arguments.size();
+}
+
+
+bool Args::empty(){
+    return _arguments.empty();
 }

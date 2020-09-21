@@ -11,8 +11,10 @@ protected:
     virtual void print(IWriter* writer, const DnaMetaData& dna);
 
 private:
-    void saveSeqById(IWriter* writer, DnaContainer* dnaContainer, const Args& args);
-    void saveSeqByName(IWriter* writer, DnaContainer* dnaContainer, const Args& args);
+    static void saveSeqById(IWriter* writer, DnaContainer* dnaContainer, const Args& args);
+    static void saveSeqByName(IWriter* writer, DnaContainer* dnaContainer, const Args& args);
+    bool hasValidNumOfArgs(const Args& args);
+
     static std::string _rootDir;
 };
 

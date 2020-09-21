@@ -3,7 +3,8 @@
 
 class RunDna{
 public:
-    void start();
+    static void start();
+    static void shutDown();
 };
 
 

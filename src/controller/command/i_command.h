@@ -16,4 +16,6 @@ protected:
 
 
 inline ICommand::~ICommand() {}
+
+
 #endif //DNA_ANALYZER_PROJECT_ICOMMAND_H

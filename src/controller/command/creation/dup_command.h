@@ -17,6 +17,8 @@ protected:
 private:
     static const DnaMetaData* getDnaToDup(IWriter* writer, DnaContainer* dnaContainer, const Args& args);
     static std::string extractName(IWriter* writer, DnaContainer* dnaContainer, const DnaMetaData* dnaToDup, const Args& args);
+
+    static bool hasValidNumOfArgs(const Args& args);
 };
 
 

@@ -1,6 +1,7 @@
 #ifndef DNA_ANALYZER_PROJECT_DNA_TERMINAL_H
 #define DNA_ANALYZER_PROJECT_DNA_TERMINAL_H
-#include "../../read_write/include.h"
+#include "../../read/include.h"
+#include "../../write/include.h"
 #include "../../../data/dna_container.h"
 #include "../UI.h"
 #include "../../../controller/command/command_factory.h"

@@ -13,6 +13,7 @@ protected:
 
 private:
     std::string extractName(IWriter* writer,  DnaContainer* dnaContainer, const Args& args);
+    bool hasValidNumOfArgs(const Args& args);
 };
 
 

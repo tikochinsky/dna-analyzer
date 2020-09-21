@@ -7,13 +7,8 @@
 class DnaCommandManager{
 public:
     DnaCommandManager();
-//    DnaCommandManager(IReader* pReader, IWriter* pWriter);
     ~DnaCommandManager();
     void start();
-
-    //how to send parameter?
-    void setReader();
-    void setWriter();
 
 private:
     DnaContainer _dnaContainer;

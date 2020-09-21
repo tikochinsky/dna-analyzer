@@ -1,6 +1,5 @@
 #include "dna_command_manager.h"
 #include "../view/UI/CLI/dna_terminal.h"
-#include <iostream>
 
 
 DnaCommandManager::DnaCommandManager():_dnaUI(NULL){
