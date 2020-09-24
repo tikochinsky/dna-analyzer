@@ -1,1 +1,1 @@
-# dna-analyzer-design-tikochinsky
+# dna-analyzer-tikochinsky
